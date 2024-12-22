@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center" style="margin-top: 7rem; gap: 1rem;">
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Card Title</label><br>
+            <input type="text" name="title" id="" value={{term.title}}>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Card Description</label><br>
+            <textarea name="desc" id="">{{term.desc}}</textarea>
+        </div>
+        <input type="hidden" name="id" value={{obj.id}}>
+        
+
+
+        
+        <button type="submit" style="background: none; border: none;" name="color" value="FFD43B"><i class="fa-solid fa-circle fa-lg" style="color: #FFD43B;"></i></button>
+        <button type="submit" style="background: none; border: none;" name="color" value="63E6BE"><i class="fa-solid fa-circle fa-lg" style="color: #63E6BE;"></i></button>
+        <button type="submit" style="background: none; border: none;" name="color" value="ec1334"><i class="fa-solid fa-circle fa-lg" style="color: #ec1334;"></i></button>
+        
+    </form>
+    <!--<div class="d-flex flex-column flex-shrink-0 bg-body-white" style="width: 4.5rem; ">
+         <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+            <li>
+                <a href="#" class="nav-link py-3" data-bs-toggle="tooltip" data-bs-placement="right">
+                    <i class="fa-solid fa-circle-plus fa-2xl " style="color: #0a0a09;" ></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link py-3" data-bs-toggle="tooltip" data-bs-placement="right">
+                    <i class="fa-solid fa-circle fa-lg" style="color: #FFD43B;"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link py-3" data-bs-toggle="tooltip" data-bs-placement="right">
+                    <i class="fa-solid fa-circle fa-lg" style="color: #63E6BE;"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link py-3" data-bs-toggle="tooltip" data-bs-placement="right">
+                    <i class="fa-solid fa-circle fa-lg" style="color: #ec1334;"></i>
+                </a>
+            </li>
+        </ul> 
+    </div>-->
+
+    {% for item in result %}
+    <div class="card" style="width: 14rem; height: 14rem; background-color: #{{ item.color }}">
+        <div class="card-body">
+            <h5 class="card-title">{{item.title}}</h5>
+            <p class="card-text">{{item.desc}}</p> 
+            <div>
+                <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="/delete_todo/{{item.id}}"><i class="fa-solid fa-trash"></i></a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
